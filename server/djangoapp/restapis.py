@@ -17,6 +17,34 @@ from requests.auth import HTTPBasicAuth
 # def get_dealers_from_cf(url, **kwargs):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
+def get_dealers_from_cf(url, **kwargs):
+    results = []
+    # Call get_request with a URL parameter
+    json_result = get_request(url)
+    if json_result and isinstance(json_result, list):
+        # Check if the JSON result is a list
+        dealers = json_result
+        # For each dealer object
+        for dealer in dealers:
+           
+                # Check if the dealer is a dictionary with a "doc" key
+            dealer_doc = dealer
+            print(dealer_doc)
+                # Create a CarDealer object with values in `doc` object
+            dealer_obj = CarDealer(
+                    address=dealer_doc.get("address", ""),
+                    city=dealer_doc.get("city", ""),
+                    full_name=dealer_doc.get("full_name", ""),
+                    id=dealer_doc.get("id", ""),
+                    lat=dealer_doc.get("lat", ""),
+                    long=dealer_doc.get("long", ""),
+                    short_name=dealer_doc.get("short_name", ""),
+                    st=dealer_doc.get("st", ""),
+                    zip=dealer_doc.get("zip", "")
+                )
+            results.append(dealer_obj)
+
+    return results
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
