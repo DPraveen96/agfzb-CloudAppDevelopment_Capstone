@@ -52,7 +52,7 @@ def logout_request(request):
 def get_dealer_details(request, id):
     if request.method == "GET":
         context = {}
-        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/f3e16eb9-b4fa-4e9e-8897-ee1d90c7eacc/dealership-package/get-dealership"
+        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/c963072f-64d1-4186-ad6b-ed3b4d306588/dealership-package/get-dealership"
         dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
     
@@ -67,7 +67,7 @@ def get_dealer_details(request, id):
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/f3e16eb9-b4fa-4e9e-8897-ee1d90c7eacc/dealership-package/get-dealership"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/c963072f-64d1-4186-ad6b-ed3b4d306588/dealership-package/get-dealership"
         dealerships = get_dealers_from_cf(url)
         context["dealership_list"] = dealerships
         return render(request, 'djangoapp/index.html', context)
@@ -77,7 +77,7 @@ def get_dealerships(request):
 
 def add_review(request, id):
     context = {}
-    dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/f3e16eb9-b4fa-4e9e-8897-ee1d90c7eacc/dealership-package/get-dealership"
+    dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/c963072f-64d1-4186-ad6b-ed3b4d306588/dealership-package/get-dealership"
     dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
     context["dealer"] = dealer
     if request.method == 'GET':
